@@ -75,6 +75,16 @@
                         <h4 id="chat-username">Select a user</h4>
                         <p id="chat-status">Offline</p>
                      </div>
+                     <div class="last" id="last" style="visibility: hidden;">
+                        <input
+                           class="search-bar-message"
+                           type="text"
+                           id="search-input-message"
+                           placeholder="Search"
+                           oninput="searchMessage(this.value)" />
+                     </div>
+                     <button hidden type="button" id="search-button">
+                     </button>
                   </div>
                   <div class="chat-messages" id="chat-messages">
                   </div>
@@ -167,7 +177,6 @@
       let unseenCountsMap = {};
       let isMessageSearching = false;
 
-      // Right-click on messages
       document.getElementById('chat-messages').addEventListener('contextmenu', function(event) {
          event.preventDefault();
          const target = event.target.closest('.message');
@@ -458,7 +467,7 @@
          document.getElementById('chat-status').textContent = 'Offline';
          document.getElementById('chat-avatar').src = '<?= ROOT ?>/assets/images/users/Profile_default.png';
          document.getElementById('chat-messages').innerHTML = '';
-         document.getElementById('message-input').disabled = true; 
+         document.getElementById('message-input').disabled = true; // Disable input when no chat is selected
 
          hidePopupMenu();
       }
@@ -475,7 +484,6 @@
          document.getElementById('chat-avatar').src = avatarSrc;
          document.getElementById('message-input').disabled = false; 
          document.getElementById('chat-input').style.display = 'flex'; 
-
          isMessageSearching = false;
          document.getElementById('search-input-message').value = '';
          startChat(userId);
