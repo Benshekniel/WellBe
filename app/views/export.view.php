@@ -37,6 +37,28 @@
             <button type="submit">Submit</button>
          </form>
    </form>
+
+   <head>
+      <title>One Word Input</title>
+      <script>
+         function validateInput() {
+            var input = document.getElementById("wordInput").value;
+            if (input.trim().split(/\s+/).length > 1) {
+               alert("Only one word is allowed!");
+               return false;
+            }
+            return true;
+         }
+      </script>
+   </head>
+
+   <body>
+      <form onsubmit="return validateInput()">
+         <label for="wordInput">Enter a single word:</label>
+         <input type="text" id="wordInput" name="wordInput">
+         <button type="submit">Submit</button>
+      </form>
+   </body>
 </body>
 
 </html>
