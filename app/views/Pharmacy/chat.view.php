@@ -117,7 +117,7 @@
                   <ul id="popup-menu" class="popup-menu" style="display: none; position: absolute; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 8px; padding: 10px;">
                      <li onclick="editMessage()"><i class="fa-solid fa-pen"></i> Edit message</li>
                      <li id="edit-caption-option" onclick="editCaption()" style="display: none;"><i class="fa-solid fa-pen"></i> Edit caption</li>
-                     <li onclick="deleteMessage()"><i class="fas fa-trash-alt"></i> Delete message</li>
+                     <li onclick="showDeleteConfirmation()"><i class="fas fa-trash-alt"></i> Delete message</li>
                      <li id="close-chat-option" onclick="closeChat()" style="display: none;"><i class="fa-solid fa-times"></i> Close chat</li>
                   </ul>
                </div>
@@ -125,23 +125,6 @@
          </div>
       </div>
    </div>
-
-   <div id="popup-menu" style="display: none; position: absolute; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 8px; padding: 10px;">
-      <ul style="list-style: none; padding: 0; margin: 0;">
-         <li onclick="showDeleteConfirmation()" style="padding: 8px; cursor: pointer;">
-            <i class="fas fa-trash-alt"></i> Delete
-         </li>
-         <li onclick="editMessage()" style="padding: 8px; cursor: pointer;">
-            <i class="fa-solid fa-pen"></i> Edit
-         </li>
-         <li onclick="editCaption()" style="padding: 8px; cursor: pointer; display: none;" id="edit-caption-option">
-            <i class="fa-solid fa-pen"></i> Edit Caption
-         </li>
-      </ul>
-   </div>
-
-   <!-- Dim overlay -->
-   <div id="dim-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 99;"></div>
 
    <div id="discard-notification" style="display: none; position: fixed; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 8px; padding: 15px; z-index: 100;">
       <h4>Discard unsent message?</h4>
@@ -260,7 +243,7 @@
          const popupMenu = document.getElementById('popup-menu');
          const editOption = popupMenu.querySelector('li[onclick="editMessage()"]');
          const editCaptionOption = popupMenu.querySelector('#edit-caption-option');
-         const deleteOption = popupMenu.querySelector('li[onclick="deleteMessage()"]');
+         const deleteOption = popupMenu.querySelector('li[onclick="showDeleteConfirmation()"]');
          const closeChatOption = popupMenu.querySelector('#close-chat-option');
 
          if (isChatWindowClick) {
@@ -356,7 +339,6 @@
             })
             .catch(error => {
                console.error('An error occurred while deleting the message:', error);
-               showPopup('An error occurred while deleting the message: ' + error.message);
                hideDeleteConfirmation();
             });
       }

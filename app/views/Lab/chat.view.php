@@ -118,27 +118,13 @@
                   <ul id="popup-menu" class="popup-menu" style="display: none; position: absolute; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 8px; padding: 10px;">
                      <li onclick="editMessage()"><i class="fa-solid fa-pen"></i> Edit message</li>
                      <li id="edit-caption-option" onclick="editCaption()" style="display: none;"><i class="fa-solid fa-pen"></i> Edit caption</li>
-                     <li onclick="deleteMessage()"><i class="fas fa-trash-alt"></i> Delete message</li>
+                     <li onclick="showDeleteConfirmation()"><i class="fas fa-trash-alt"></i> Delete message</li>
                      <li id="close-chat-option" onclick="closeChat()" style="display: none;"><i class="fa-solid fa-times"></i> Close chat</li>
                   </ul>
                </div>
             </div>
          </div>
       </div>
-   </div>
-
-   <div id="popup-menu" style="display: none; position: absolute; background: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 8px; padding: 10px;">
-      <ul style="list-style: none; padding: 0; margin: 0;">
-         <li onclick="showDeleteConfirmation()" style="padding: 8px; cursor: pointer;">
-            <i class="fas fa-trash-alt"></i> Delete
-         </li>
-         <li onclick="editMessage()" style="padding: 8px; cursor: pointer;">
-            <i class="fa-solid fa-pen"></i> Edit
-         </li>
-         <li onclick="editCaption()" style="padding: 8px; cursor: pointer; display: none;" id="edit-caption-option">
-            <i class="fa-solid fa-pen"></i> Edit Caption
-         </li>
-      </ul>
    </div>
 
    <!-- Dim overlay -->
@@ -240,14 +226,6 @@
          chatInput.style.display = 'none';
       });
 
-      document.getElementById('chat-messages').addEventListener('contextmenu', function(event) {
-         event.preventDefault();
-         const target = event.target.closest('.message');
-         if (target) {
-            selectedMessage = target;
-            showPopupMenu(event.pageX, event.pageY);
-         }
-      });
       const search_input = document.getElementById('last');
       const search = document.getElementById('search-button');
       search.addEventListener('click', function() {
@@ -264,7 +242,7 @@
          const popupMenu = document.getElementById('popup-menu');
          const editOption = popupMenu.querySelector('li[onclick="editMessage()"]');
          const editCaptionOption = popupMenu.querySelector('#edit-caption-option');
-         const deleteOption = popupMenu.querySelector('li[onclick="deleteMessage()"]');
+         const deleteOption = popupMenu.querySelector('li[onclick="showDeleteConfirmation()"]');
          const closeChatOption = popupMenu.querySelector('#close-chat-option');
 
          if (isChatWindowClick) {
@@ -474,6 +452,7 @@
          document.getElementById('chat-avatar').src = '<?= ROOT ?>/assets/images/users/Profile_default.png';
          document.getElementById('chat-messages').innerHTML = '';
          document.getElementById('message-input').disabled = true; // Disable input when no chat is selected
+         document.getElementById('chat-input').style.display = 'none'; // Hide the chat-input div
 
          hidePopupMenu();
       }
@@ -495,27 +474,6 @@
          document.getElementById('search-input-message').value = '';
          startChat(userId);
          markMessagesAsSeen(userId);
-      }
-
-      function closeChat() {
-         if (!selectedUserId) {
-            alert("No chat is currently selected.");
-            return;
-         }
-
-         selectedUserId = null;
-         isMessageSearching = false;
-         document.getElementById('search-input-message').value = '';
-
-         // Reset the chat window UI
-         document.getElementById('chat-username').textContent = 'Select a user';
-         document.getElementById('chat-status').textContent = 'Offline';
-         document.getElementById('chat-avatar').src = '<?= ROOT ?>/assets/images/users/Profile_default.png';
-         document.getElementById('chat-messages').innerHTML = '';
-         document.getElementById('message-input').disabled = true; // Disable input when no chat is selected
-         document.getElementById('chat-input').style.display = 'none'; // Hide the chat-input div
-
-         hidePopupMenu();
       }
 
       function escapeHTML(str) {
