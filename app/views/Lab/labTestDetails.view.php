@@ -46,8 +46,8 @@ $testDetails = $he->getTestDetails($requestID);
                                             <td><?= esc($detail['test_name']) ?></td>
                                             <td><?= esc($detail['priority']) ?></td>
                                             <td>
-                                                <select name="state" data-test-name="<?= $detail['test_name'] ?>" class="state-selector">
-                                                    <option value="pending" <?= $detail['state'] == 'pending' ? 'selected' : '' ?>>Pending</option>
+                                                <select onchange=""; name="state" data-test-name="<?= $detail['test_name'] ?>" class="state-selector" min="<?= $detail['state'] == 'completed' ? '' : '' ; ?>">
+                                                    <option value="pending"  <?= $detail['state'] == 'pending' ? 'selected' : '' ?>>Pending</option>
                                                     <option value="ongoing" <?= $detail['state'] == 'ongoing' ? 'selected' : '' ?>>Ongoing</option>
                                                     <option value="completed" <?= $detail['state'] == 'completed' ? 'selected' : '' ?>>Completed</option>
                                                 </select>
@@ -244,6 +244,11 @@ $testDetails = $he->getTestDetails($requestID);
                 }
             });
         });
+
+        function changeDropdownColor() {
+            window.location.reload();
+        }
+
 
         document.addEventListener('DOMContentLoaded', function() {
             const doneButton = document.getElementById('doneButton');

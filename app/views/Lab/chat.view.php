@@ -83,9 +83,9 @@
                            placeholder="Search"
                            oninput="searchMessage(this.value)" />
                      </div>
-                     <button type="button" id="search-button">
+                     <!-- <button type="button" id="search-button">
                         <i class="fa fa-search" aria-hidden="true"></i>
-                     </button>
+                     </button> -->
                   </div>
                   <div class="chat-messages" id="chat-messages">
                   </div>

@@ -75,17 +75,6 @@
                         <h4 id="chat-username">Select a user</h4>
                         <p id="chat-status">Offline</p>
                      </div>
-                     <div class="last" id="last" style="visibility: hidden;">
-                        <input
-                           class="search-bar-message"
-                           type="text"
-                           id="search-input-message"
-                           placeholder="Search"
-                           oninput="searchMessage(this.value)" />
-                     </div>
-                     <button type="button" id="search-button">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                     </button>
                   </div>
                   <div class="chat-messages" id="chat-messages">
                   </div>
