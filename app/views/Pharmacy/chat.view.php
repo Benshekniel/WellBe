@@ -173,17 +173,15 @@
          const target = event.target.closest('.message');
          if (target) {
             selectedMessage = target;
-            showPopupMenu(event.pageX, event.pageY, false); // Not a chat window click
+            showPopupMenu(event.pageX, event.pageY, false); 
          }
       });
 
-      // Right-click on chat window (excluding messages)
       document.getElementById('chat-window').addEventListener('contextmenu', function(event) {
          event.preventDefault();
-         // Only show the menu if the click is not on a message
          if (!event.target.closest('.message')) {
-            selectedMessage = null; // Ensure no message is selected
-            showPopupMenu(event.pageX, event.pageY, true); // Chat window click
+            selectedMessage = null; 
+            showPopupMenu(event.pageX, event.pageY, true); 
          }
       });
 
@@ -257,13 +255,11 @@
          const closeChatOption = popupMenu.querySelector('#close-chat-option');
 
          if (isChatWindowClick) {
-            // Show only "Close chat" option
             editOption.style.display = 'none';
             editCaptionOption.style.display = 'none';
             deleteOption.style.display = 'none';
-            closeChatOption.style.display = 'flex'; // Ensure it's visible and aligned
+            closeChatOption.style.display = 'flex'; 
          } else {
-            // Show message-related options, hide "Close chat"
             closeChatOption.style.display = 'none';
             if (selectedMessage) {
                const senderId = selectedMessage.classList.contains('received') ?
@@ -462,7 +458,7 @@
          document.getElementById('chat-status').textContent = 'Offline';
          document.getElementById('chat-avatar').src = '<?= ROOT ?>/assets/images/users/Profile_default.png';
          document.getElementById('chat-messages').innerHTML = '';
-         document.getElementById('message-input').disabled = true; // Disable input when no chat is selected
+         document.getElementById('message-input').disabled = true; 
 
          hidePopupMenu();
       }
@@ -477,8 +473,8 @@
          document.getElementById('chat-username').textContent = username;
          document.getElementById('chat-status').textContent = userTime;
          document.getElementById('chat-avatar').src = avatarSrc;
-         document.getElementById('message-input').disabled = false; // Enable input when a chat is selected
-         document.getElementById('chat-input').style.display = 'flex'; // Show the chat-input div
+         document.getElementById('message-input').disabled = false; 
+         document.getElementById('chat-input').style.display = 'flex'; 
 
          isMessageSearching = false;
          document.getElementById('search-input-message').value = '';
@@ -501,8 +497,8 @@
          document.getElementById('chat-status').textContent = 'Offline';
          document.getElementById('chat-avatar').src = '<?= ROOT ?>/assets/images/users/Profile_default.png';
          document.getElementById('chat-messages').innerHTML = '';
-         document.getElementById('message-input').disabled = true; // Disable input when no chat is selected
-         document.getElementById('chat-input').style.display = 'none'; // Hide the chat-input div
+         document.getElementById('message-input').disabled = true; 
+         document.getElementById('chat-input').style.display = 'none'; 
 
          hidePopupMenu();
       }
