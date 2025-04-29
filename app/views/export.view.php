@@ -59,6 +59,9 @@
          <button type="submit">Submit</button>
       </form>
    </body>
+
+   <input type="text" pattern="[A-Za-z]{3,10}" title="Only letters (3-10 characters)">
+
 </body>
 
 </html>
