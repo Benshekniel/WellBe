@@ -13,7 +13,6 @@ class Pharmacy extends Controller
             'requests' => ["fas fa-list", "Requests"],
             'medicines' => ["fa-solid fa-tablets", "Medicines"],
             'chat' => ["fa-solid fa-comment-dots", "Chat"],
-            'report' => ["fa-solid fa-chart-simple", "Report"],
             'logout' => ["fas fa-sign-out-alt", "Logout"]
         ],
         'userType' => 'pharmacy'
